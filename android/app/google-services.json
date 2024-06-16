@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "139668820722",
+    "project_id": "ideiacode-cadastro",
+    "storage_bucket": "ideiacode-cadastro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139668820722:android:8a6f3ddab564e9c70c366b",
+        "android_client_info": {
+          "package_name": "br.com.ideiacode.ideiacode_cadastro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsIOG4nmVqC9uTGjdETi4HOc3o4n66UN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
