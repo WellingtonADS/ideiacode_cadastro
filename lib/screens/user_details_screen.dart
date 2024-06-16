@@ -101,6 +101,7 @@ class UserDetailsScreenState extends State<UserDetailsScreen> {
                   );
                   await userService.createUser(user);
                   if (mounted) {
+                    // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('User details saved')),
                     );
