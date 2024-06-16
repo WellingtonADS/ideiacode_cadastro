@@ -7,11 +7,13 @@ import '../services/auth_service.dart';
 import '../services/user_service.dart';
 
 class UserDetailsScreen extends StatefulWidget {
+  const UserDetailsScreen({super.key});
+
   @override
-  _UserDetailsScreenState createState() => _UserDetailsScreenState();
+  UserDetailsScreenState createState() => UserDetailsScreenState();
 }
 
-class _UserDetailsScreenState extends State<UserDetailsScreen> {
+class UserDetailsScreenState extends State<UserDetailsScreen> {
   final _nameController = TextEditingController();
   final _birthDateController = TextEditingController();
   final _cpfController = TextEditingController();
@@ -20,13 +22,14 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
     final userService = UserService();
-    final currentUser = authService._auth.currentUser;
+    final currentUser = authService.currentUser; // Supondo que esse método retorna o usuário atual.
 
-    Future<void> _pickImage() async {
-      final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
+    Future<void> pickImage() async {
+      final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
+        if (!mounted) return; // Verifica se o widget ainda está montado
         setState(() {
           _photoUrl = pickedFile.path;
         });
@@ -34,7 +37,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text('User Details')),
+      appBar: AppBar(title: const Text('User Details')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -43,18 +46,18 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             children: [
               TextField(
                 controller: _nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextField(
                 controller: _birthDateController,
-                decoration: InputDecoration(labelText: 'Birth Date'),
+                decoration: const InputDecoration(labelText: 'Birth Date'),
               ),
               TextField(
                 controller: _cpfController,
-                decoration: InputDecoration(labelText: 'CPF'),
+                decoration: const InputDecoration(labelText: 'CPF'),
               ),
-              SizedBox(height: 10),
-              Text('Gender'),
+              const SizedBox(height: 10),
+              const Text('Gender'),
               ListTile(
                 title: const Text('Masculino'),
                 leading: Radio<String>(
@@ -80,11 +83,11 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 ),
               ),
               ElevatedButton(
-                onPressed: _pickImage,
-                child: Text('Pick Image'),
+                onPressed: pickImage,
+                child: const Text('Pick Image'),
               ),
               if (_photoUrl.isNotEmpty) Image.file(File(_photoUrl)),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
                   UserModel user = UserModel(
@@ -97,14 +100,26 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                     gender: _gender,
                   );
                   await userService.createUser(user);
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('User details saved')));
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('User details saved')),
+                    );
+                  }
                 },
-                child: Text('Save Details'),
+                child: const Text('Save Details'),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _birthDateController.dispose();
+    _cpfController.dispose();
+    super.dispose();
   }
 }

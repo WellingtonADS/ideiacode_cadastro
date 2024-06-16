@@ -3,49 +3,80 @@ import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 
 class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({super.key});
+
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  RegistrationScreenState createState() => RegistrationScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class RegistrationScreenState extends State<RegistrationScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  Future<void> _register() async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      await authService.createUserWithEmailAndPassword(
+        _emailController.text,
+        _passwordController.text,
+      );
+      if (!mounted) return; // Verifica se o widget ainda está montado
+      Navigator.of(context).pushReplacementNamed('/home');
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      if (!mounted) return; // Verifica se o widget ainda está montado
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to register: $e')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
-
     return Scaffold(
-      appBar: AppBar(title: Text('Register')),
+      appBar: AppBar(title: const Text('Register')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
             ),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                User? user = await authService.registerWithEmailPassword(
-                  _emailController.text, 
-                  _passwordController.text
-                );
-                if (user != null) {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => UserDetailsScreen()));
-                }
+            const SizedBox(height: 20),
+            _isLoading
+                ? const CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: _register,
+                    child: const Text('Register'),
+                  ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/login');
               },
-              child: Text('Register'),
+              child: const Text('Already have an account? Login'),
             ),
           ],
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }
