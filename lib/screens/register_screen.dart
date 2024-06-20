@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  LoginScreenState createState() => LoginScreenState();
+  RegisterScreenState createState() => RegisterScreenState();
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -19,9 +19,10 @@ class LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _login() {
+  void _register() {
     if (_formKey.currentState?.validate() ?? false) {
-      Navigator.pushReplacementNamed(context, '/home');
+      // Implementar lógica de registro
+      Navigator.pushReplacementNamed(context, '/login');
     }
   }
 
@@ -29,7 +30,7 @@ class LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Registrar'),
         centerTitle: true,
         titleTextStyle: const TextStyle(color: Colors.white, fontSize: 24),
         backgroundColor: Colors.blue,
@@ -80,38 +81,29 @@ class LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _login,
+                onPressed: _register,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                   fixedSize: const Size(200, 50),
                 ),
                 child: const Text(
-                  'Login',
+                  'Registrar',
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
               const SizedBox(height: 10),
               TextButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/register');
+                  Navigator.pushReplacementNamed(context, '/login');
                 },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  fixedSize: const Size(200, 50),
-                ),
                 child: const Text(
-                  'Criar Conta',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  'Já tem uma conta?\nFaça o login aqui!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, color: Colors.blue),
                 ),
               ),
             ],
@@ -120,5 +112,4 @@ class LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 }

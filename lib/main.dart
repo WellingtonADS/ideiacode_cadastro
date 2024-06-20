@@ -1,12 +1,11 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:ideiacode_cadastro/screens/main_screen.dart';
 import 'screens/login_screen.dart';
-import 'services/auth_service.dart';
+import 'screens/register_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/list_clients_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+void main() {
   runApp(const MyApp());
 }
 
@@ -15,17 +14,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<AuthService>(create: (_) => AuthService()),
-      ],
-      child: MaterialApp(
-        title: 'Client Registration',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const LoginScreen(),
+    return MaterialApp(
+      title: 'IdeiaCode Cadastro',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: const MainScreen(), // Definindo MainScreen como tela inicial
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/listClients': (context) => const ListClientsScreen(clients: []),
+      },
     );
   }
 }
