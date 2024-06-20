@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomeScreen(),
         '/listClients': (context) => const ListClientsScreen(clients: []),
       },
+      locale: const Locale('pt', 'BR'),
     );
   }
 }
