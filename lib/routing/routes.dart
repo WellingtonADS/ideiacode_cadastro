@@ -22,7 +22,7 @@ class Routes {
       listClients: (context) => const ListClientsScreen(clients: []),
       addClient: (context) => AddClientScreen(
         onAddClient: (cliente) {
-          // Implementação da lógica para adicionar cliente aqui
+          // Implementação da lógica para adicionar cliente
         },
       ),
     };
