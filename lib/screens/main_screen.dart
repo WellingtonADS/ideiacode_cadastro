@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ideiacode_cadastro/screens/home_screen.dart';
-import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
-import 'package:ideiacode_cadastro/screens/login_screen.dart';
-import 'package:ideiacode_cadastro/screens/register_screen.dart';
+//import 'package:ideiacode_cadastro/screens/home_screen.dart';
+//import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
+//import 'package:ideiacode_cadastro/screens/login_screen.dart';
+//import 'package:ideiacode_cadastro/screens/register_screen.dart';
 
+/* /// Função principal que inicia a aplicação.
 void main() {
   runApp(const MyApp());
 }
 
+/// Classe que representa o aplicativo.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -28,8 +30,9 @@ class MyApp extends StatelessWidget {
       },
     );
   }
-}
+}*/
 
+/// Classe que representa a tela principal do aplicativo.
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
