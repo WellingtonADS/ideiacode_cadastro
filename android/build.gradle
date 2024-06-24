@@ -37,18 +37,19 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        // Aqui removemos o uso incorreto de `compilerArgs`
     }
 
     lintOptions {
         checkAllWarnings true
         warningsAsErrors true
         disable 'AndroidGradlePluginVersion', 'InvalidPackage', 'GradleDependency'
+        warning 'deprecation'  // Adiciona detalhes sobre APIs obsoletas
     }
 
     dependencies {
         implementation "androidx.annotation:annotation:1.7.0"
     }
-
 
     testOptions {
         unitTests.includeAndroidResources = true

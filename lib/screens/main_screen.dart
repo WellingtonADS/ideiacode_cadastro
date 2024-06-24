@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ideiacode_cadastro/screens/home_screen.dart';
-import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
-import 'package:ideiacode_cadastro/screens/login_screen.dart';
-import 'package:ideiacode_cadastro/screens/register_screen.dart';
+import 'package:ideiacode_cadastro/routing/routes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Cadastro());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Cadastro extends StatelessWidget {
+  const Cadastro({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const MainScreen(),
-      routes: {
-        '/login': (context) => const LoginScreen(),
-        '/register': (context) => const RegisterScreen(),
-        '/home': (context) => const HomeScreen(),
-        '/listClients': (context) => const ListClientsScreen(clients: []),
-      },
+      routes: Routes.getRoutes(),
     );
   }
 }
@@ -55,7 +46,7 @@ class MainScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Bem-vindo ao IdeiaCode!',
+              'Bem-vindo a IdeiaCode!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -66,7 +57,7 @@ class MainScreen extends StatelessWidget {
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/login');
+                Navigator.pushNamed(context, Routes.login);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
@@ -84,7 +75,7 @@ class MainScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/register');
+                Navigator.pushNamed(context, Routes.register);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
