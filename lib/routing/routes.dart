@@ -4,9 +4,12 @@ import 'package:ideiacode_cadastro/screens/register_screen.dart';
 import 'package:ideiacode_cadastro/screens/home_screen.dart';
 import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
 import 'package:ideiacode_cadastro/screens/add_client_screen.dart';
+import 'package:ideiacode_cadastro/screens/main_screen.dart';
+import 'package:flutter/widgets.dart ';
 
 class Routes {
-  static const String home = '/';
+  
+  static const String mainScreen = '/';
   static const String login = '/login';
   static const String register = '/register';
   static const String homeScreen = '/home';
@@ -15,7 +18,8 @@ class Routes {
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
-      home: (context) => const HomeScreen(),
+      
+      mainScreen: (context) => const MainScreen(),
       login: (context) => const LoginScreen(),
       register: (context) => const RegisterScreen(),
       homeScreen: (context) => const HomeScreen(),

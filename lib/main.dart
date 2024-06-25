@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideiacode_cadastro/screens/main_screen.dart';
+import 'package:ideiacode_cadastro/routing/routes.dart';
+import 'package:ideiacode_cadastro/styles/app_styles.dart';
 
 void main() {
   runApp(const Cadastro());
@@ -15,8 +16,10 @@ class Cadastro extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: AppStyles.appBarTheme,
       ),
-      home: const MainScreen(), // Definindo MainScreen como tela inicial
+      //initialRoute: Routes.mainScreen,
+      routes: Routes.getRoutes(),
       locale: const Locale('pt', 'BR'),
     );
   }
