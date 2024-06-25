@@ -40,7 +40,9 @@ class RegisterScreen extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, Routes.homeScreen);
               },
               style: AppStyles.elevatedButtonStyle,
-              child: const Text('Criar Conta'),
+              child: const Text(
+                'Criar Conta',
+                style: AppStyles.buttonTextStyle,),
             ),
           ],
         ),

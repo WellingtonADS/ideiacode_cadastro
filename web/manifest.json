@@ -1,6 +1,6 @@
 {
-    "name": "ideiacode_cadastro",
-    "short_name": "ideiacode_cadastro",
+    "name": "ideia_app",
+    "short_name": "ideia_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
