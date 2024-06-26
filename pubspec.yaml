@@ -21,6 +21,7 @@ dependencies:
   cloud_firestore: ^5.0.1
   image_picker: any  # Adicione esta dependência se for necessária
   flutter_plugin_android_lifecycle: ^2.0.0
+  email_validator: ^2.0.1
 
 dev_dependencies:
   flutter_test:

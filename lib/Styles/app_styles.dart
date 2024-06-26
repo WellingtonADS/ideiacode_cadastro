@@ -33,6 +33,6 @@ class AppStyles {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(30),
     ),
-    minimumSize: const Size(200, 50),
+    fixedSize: const Size(200, 50),
   );
 }
