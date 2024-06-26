@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideiacode_cadastro/models/cliente.dart';
 
-
 class ListClientsScreen extends StatelessWidget {
   final List<Cliente> clients;
 

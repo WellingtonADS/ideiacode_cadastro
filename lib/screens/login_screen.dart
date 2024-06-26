@@ -30,6 +30,7 @@ class LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+        // Utilizando o estilo de texto do app_styles.dart para o título da AppBar
       ),
       body: Center(
         child: Container(
@@ -66,9 +67,11 @@ class LoginScreenState extends State<LoginScreen> {
                     Navigator.pushReplacementNamed(context, Routes.homeScreen);
                   },
                   style: AppStyles.elevatedButtonStyle,
+                  // Utilizando o estilo de botão do app_styles.dart
                   child: const Text(
                     'Login',
                     style: AppStyles.buttonTextStyle,
+                    // Utilizando o estilo de texto do botão do app_styles.dart
                   ),
                 ),
               ],

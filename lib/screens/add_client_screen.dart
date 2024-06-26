@@ -116,7 +116,7 @@ class AddClientScreenState extends State<AddClientScreen> {
                       cpf: _cpfController.text,
                       dataNascimento: DateTime.parse(_dobController.text),
                       whatsapp: _whatsappController.text,
-                      id: 0, // Replace null with an appropriate value for the id parameter.
+                      id: 0, // Substitua por um valor apropriado para o parâmetro id.
                     );
                     widget.onAddClient(cliente);
                     ScaffoldMessenger.of(context).showSnackBar(

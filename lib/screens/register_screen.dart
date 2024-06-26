@@ -30,6 +30,7 @@ class RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Criar Conta', style: AppStyles.titleTextStyle),
+        // Utilizando o estilo de texto do app_styles.dart
       ),
       body: Center(
         child: Container(
@@ -72,9 +73,11 @@ class RegisterScreenState extends State<RegisterScreen> {
                     }
                   },
                   style: AppStyles.elevatedButtonStyle,
+                  // Utilizando o estilo de botão do app_styles.dart
                   child: const Text(
                     'Criar Conta',
                     style: AppStyles.buttonTextStyle,
+                    // Utilizando o estilo de texto do botão do app_styles.dart
                   ),
                 ),
               ],
