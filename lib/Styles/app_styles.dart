@@ -4,13 +4,7 @@ class AppStyles {
   // Cores principais
   static const Color primaryColor = Colors.blue;
 
-  // Estilo de texto para títulos
-  static const TextStyle titleTextStyle = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: Colors.black, // Cor dos títulos
-  );
-
+  
   // Estilo de texto para subtítulos
   static const TextStyle subtitleTextStyle = TextStyle(
     fontSize: 18,
