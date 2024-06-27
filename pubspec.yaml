@@ -11,15 +11,15 @@ dependencies:
   flutter:
     sdk: flutter
   
-  shared_preferences: ^2.0.11
-  provider: ^6.1.2
-  mask_text_input_formatter: ^2.1.0
-  intl: ^0.19.0
   cupertino_icons: ^1.0.6
   firebase_core: ^3.1.0
-  firebase_auth: ^5.1.0  # Downgrade para versão compatível
+  firebase_auth: ^5.1.0 #Note: You mentioned downgrading to a compatible version)
   cloud_firestore: ^5.0.1
-  image_picker: any  # Adicione esta dependência se for necessária
+  provider: ^6.1.2
+  intl: ^0.19.0
+  mask_text_input_formatter: ^2.1.0
+  shared_preferences: ^2.0.11
+  image_picker: any #(Add this dependency if needed)
   flutter_plugin_android_lifecycle: ^2.0.0
   email_validator: ^2.0.1
 

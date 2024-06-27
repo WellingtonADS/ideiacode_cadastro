@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:ideiacode_cadastro/routing/routes.dart';
 
 
+=======
+>>>>>>> bc7606f7cbb277def82b98024c6c32f4e851e90d
 
+/// Classe que representa a tela principal do aplicativo.
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
@@ -28,7 +32,7 @@ class MainScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Bem-vindo ao IdeiaCode!',
+              'Bem-vindo a IdeiaCode!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),

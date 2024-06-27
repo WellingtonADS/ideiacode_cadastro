@@ -3,7 +3,6 @@ import 'package:ideiacode_cadastro/models/cliente.dart';
 import 'package:ideiacode_cadastro/screens/add_client_screen.dart';
 import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
 import 'package:ideiacode_cadastro/routing/routes.dart';
-import 'package:ideiacode_cadastro/styles/app_styles.dart'; // Importa o arquivo de estilos
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -48,6 +47,11 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'), // Título da barra de navegação
+        centerTitle: true,
+        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 24),
+        backgroundColor: Colors.blue,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -63,19 +67,33 @@ class HomeScreenState extends State<HomeScreen> {
             children: [
               ElevatedButton(
                 onPressed: _navigateToAddClient, // Navega para a tela de adicionar cliente
-                style: AppStyles.elevatedButtonStyle, // Aplica o estilo de botão definido em AppStyles
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  fixedSize: const Size(200, 50),
+                ),
                 child: const Text(
                   'Adicionar Cliente',
-                  style: AppStyles.buttonTextStyle, // Aplica o estilo de texto definido em AppStyles
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _navigateToListClients, // Navega para a tela de listar clientes
-                style: AppStyles.elevatedButtonStyle, // Aplica o estilo de botão definido em AppStyles
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  fixedSize: const Size(200, 50),
+                ),
                 child: const Text(
                   'Listar Clientes',
-                  style: AppStyles.buttonTextStyle, // Aplica o estilo de texto definido em AppStyles
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ],
