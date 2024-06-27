@@ -39,9 +39,7 @@ class ClientProfileScreenState extends State<ClientProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Perfil do Cliente', style: AppStyles.titleTextStyle), // Aplicando estilo de texto do título da AppBar
-        backgroundColor: AppStyles.primaryColor, // Aplicando cor de fundo da AppBar
-        centerTitle: true,
+        title: const Text('Perfil do Cliente'), // Aplicando estilo de texto do título da AppBar
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(

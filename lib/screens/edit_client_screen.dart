@@ -58,10 +58,7 @@ class EditClientScreenState extends State<EditClientScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Cliente', style: AppStyles.titleTextStyle), // Aplicando estilo de texto do título da AppBar
-        backgroundColor: AppStyles.primaryColor, // Aplicando cor de fundo da AppBar
-        centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text('Editar Cliente'), 
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

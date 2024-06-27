@@ -4,11 +4,14 @@ class AppStyles {
   // Cores principais
   static const Color primaryColor = Colors.blue;
 
+  // Estilo de texto para títulos
   static const TextStyle titleTextStyle = TextStyle(
-    color: Colors.white,
     fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.black, // Cor dos títulos
   );
 
+  // Estilo de texto para subtítulos
   static const TextStyle subtitleTextStyle = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.normal,
@@ -37,7 +40,7 @@ class AppStyles {
   );
 
   // Estilo da AppBar
-  static AppBarTheme appBarTheme = const AppBarTheme(
+  static const AppBarTheme appBarTheme = AppBarTheme(
     backgroundColor: primaryColor,
     centerTitle: true,
     titleTextStyle: TextStyle(
@@ -53,7 +56,8 @@ class AppStyles {
   // Estilo de botão elevado
   static ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
     backgroundColor: primaryColor,
-    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+    minimumSize: const Size(300, 50),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(30),
     ),

@@ -41,10 +41,7 @@ class AddClientScreenState extends State<AddClientScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adicionar Cliente', style: AppStyles.titleTextStyle), // Aplicando estilo de texto do título da AppBar
-        centerTitle: true,
-        backgroundColor: AppStyles.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text('Adicionar Cliente'),        
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

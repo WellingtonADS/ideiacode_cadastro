@@ -29,11 +29,7 @@ class RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Criar Conta', style: AppStyles.titleTextStyle),
-        // Utilizando o estilo de texto do app_styles.dart
-        backgroundColor: AppStyles.primaryColor, // Cor de fundo da AppBar
-        centerTitle: true, // Título centralizado
-        iconTheme: AppStyles.appBarTheme.iconTheme, // Ícone de voltar branco
+        title: const Text('Criar Conta'),        
       ),
       body: Center(
         child: Container(

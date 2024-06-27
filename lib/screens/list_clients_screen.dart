@@ -11,7 +11,7 @@ class ListClientsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista de Clientes', style: AppStyles.titleTextStyle), // Aplicando estilo de texto do título da AppBar
+        title: const Text('Lista de Clientes'), 
       ),
       body: clients.isEmpty
           ? const Center(child: Text('Nenhum cliente cadastrado.', style: AppStyles.subtitleTextStyle)) // Aplicando estilo de texto para mensagem

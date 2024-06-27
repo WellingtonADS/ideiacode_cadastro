@@ -11,11 +11,7 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Sistema de Cadastro',
-          style: AppStyles.titleTextStyle,
         ),
-        centerTitle: true,
-        backgroundColor: AppStyles.primaryColor,
-        elevation: 0,
       ),
       body: Center(
         child: Column(
