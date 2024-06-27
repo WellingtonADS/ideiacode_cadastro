@@ -1,4 +1,4 @@
-package br.com.ideiacode.ideia_app
+package com.ideiacode.ideiacode_cadastro
 
 import io.flutter.embedding.android.FlutterActivity
 

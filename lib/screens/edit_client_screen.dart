@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ideiacode_cadastro/models/cliente.dart';
+import 'package:ideiacode_cadastro/styles/app_styles.dart';
 
 class EditClientScreen extends StatefulWidget {
   final Cliente cliente;
@@ -16,6 +19,10 @@ class EditClientScreenState extends State<EditClientScreen> {
   late TextEditingController _cpfController;
   late TextEditingController _dobController;
   late TextEditingController _whatsappController;
+
+  var cpfMaskFormatter = MaskTextInputFormatter(mask: '###.###.###-##', filter: {"#": RegExp(r'[0-9]')});
+  var dobMaskFormatter = MaskTextInputFormatter(mask: '##/##/####', filter: {"#": RegExp(r'[0-9]')});
+  var whatsappMaskFormatter = MaskTextInputFormatter(mask: '(##) #####-####', filter: {"#": RegExp(r'[0-9]')});
 
   @override
   void initState() {
@@ -51,10 +58,9 @@ class EditClientScreenState extends State<EditClientScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Cliente'),
-        backgroundColor: Colors.blue,
+        title: const Text('Editar Cliente', style: AppStyles.titleTextStyle), // Aplicando estilo de texto do título da AppBar
+        backgroundColor: AppStyles.primaryColor, // Aplicando cor de fundo da AppBar
         centerTitle: true,
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 24),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
@@ -64,28 +70,73 @@ class EditClientScreenState extends State<EditClientScreen> {
             children: <Widget>[
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Nome'),
+                decoration: const InputDecoration(
+                  labelText: 'Nome',
+                  labelStyle: AppStyles.inputLabelTextStyle, // Aplicando estilo de texto para o rótulo do campo
+                ),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+                ],
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.split(' ').any((word) => word.length < 3)) {
+                    return 'O nome deve ter no mínimo 3 letras em cada palavra';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  // Implementar lógica de formatação ou validação se necessário
+                },
               ),
               TextFormField(
                 controller: _cpfController,
-                decoration: const InputDecoration(labelText: 'CPF'),
+                decoration: const InputDecoration(
+                  labelText: 'CPF',
+                  labelStyle: AppStyles.inputLabelTextStyle, // Aplicando estilo de texto para o rótulo do campo
+                ),
                 keyboardType: TextInputType.number,
+                inputFormatters: [cpfMaskFormatter],
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.length != 14) {
+                    return 'CPF inválido';
+                  }
+                  return null;
+                },
               ),
               TextFormField(
                 controller: _dobController,
-                decoration: const InputDecoration(labelText: 'Data de Nascimento'),
+                decoration: const InputDecoration(
+                  labelText: 'Data de Nascimento',
+                  labelStyle: AppStyles.inputLabelTextStyle, // Aplicando estilo de texto para o rótulo do campo
+                ),
                 keyboardType: TextInputType.datetime,
+                inputFormatters: [dobMaskFormatter],
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.length != 10) {
+                    return 'Data de nascimento inválida';
+                  }
+                  return null;
+                },
               ),
               TextFormField(
                 controller: _whatsappController,
-                decoration: const InputDecoration(labelText: 'WhatsApp'),
+                decoration: const InputDecoration(
+                  labelText: 'WhatsApp',
+                  labelStyle: AppStyles.inputLabelTextStyle, // Aplicando estilo de texto para o rótulo do campo
+                ),
                 keyboardType: TextInputType.phone,
+                inputFormatters: [whatsappMaskFormatter],
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.length != 15) {
+                    return 'Número de WhatsApp inválido';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _save,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: AppStyles.primaryColor, // Aplicando cor de fundo do botão
                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -93,7 +144,7 @@ class EditClientScreenState extends State<EditClientScreen> {
                 ),
                 child: const Text(
                   'Salvar',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: AppStyles.buttonTextStyle, // Aplicando estilo de texto para o botão
                 ),
               ),
             ],

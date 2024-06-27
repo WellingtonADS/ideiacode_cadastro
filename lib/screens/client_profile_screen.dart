@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ideiacode_cadastro/models/cliente.dart';
 import 'package:ideiacode_cadastro/screens/edit_client_screen.dart';
+import 'package:ideiacode_cadastro/styles/app_styles.dart';
 
 class ClientProfileScreen extends StatefulWidget {
   final Cliente cliente;
@@ -38,10 +39,9 @@ class ClientProfileScreenState extends State<ClientProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Perfil do Cliente'),
-        backgroundColor: Colors.blue,
+        title: const Text('Perfil do Cliente', style: AppStyles.titleTextStyle), // Aplicando estilo de texto do título da AppBar
+        backgroundColor: AppStyles.primaryColor, // Aplicando cor de fundo da AppBar
         centerTitle: true,
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 24),
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
@@ -67,12 +67,12 @@ class ClientProfileScreenState extends State<ClientProfileScreen> {
           children: [
             Text(
               'Nome: ${_cliente.nome}',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: AppStyles.headerTextStyle, // Aplicando estilo de texto para o nome do cliente
             ),
             const SizedBox(height: 10),
             Text(
               'CPF: ${_cliente.cpf}',
-              style: const TextStyle(fontSize: 18, color: Colors.grey),
+              style: AppStyles.bodyTextStyle, // Aplicando estilo de texto para o CPF do cliente
             ),
             // Adicione aqui mais informações do cliente conforme necessário
           ],
