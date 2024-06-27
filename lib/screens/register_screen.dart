@@ -30,6 +30,10 @@ class RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Criar Conta', style: AppStyles.titleTextStyle),
+        // Utilizando o estilo de texto do app_styles.dart
+        backgroundColor: AppStyles.primaryColor, // Cor de fundo da AppBar
+        centerTitle: true, // Título centralizado
+        iconTheme: AppStyles.appBarTheme.iconTheme, // Ícone de voltar branco
       ),
       body: Center(
         child: Container(
@@ -40,28 +44,42 @@ class RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const TextField(
-                  decoration: InputDecoration(
+                TextFormField(
+                  decoration: const InputDecoration(
                     labelText: 'Nome',
                     labelStyle: AppStyles.subtitleTextStyle,
                   ),
+                  // Você pode adicionar validação para o campo de nome, se necessário
                 ),
                 const SizedBox(height: 20),
-                TextField(
+                TextFormField(
                   decoration: InputDecoration(
                     labelText: 'E-mail',
                     labelStyle: AppStyles.subtitleTextStyle,
                     errorText: _emailErrorText,
                   ),
                   onChanged: _validateEmail,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, insira um e-mail';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 20),
-                const TextField(
-                  decoration: InputDecoration(
+                TextFormField(
+                  decoration: const InputDecoration(
                     labelText: 'Senha',
                     labelStyle: AppStyles.subtitleTextStyle,
                   ),
                   obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, insira uma senha';
+                    }
+                    return null;
+                  },
+                  // Você pode adicionar onChanged para validar a senha, se necessário
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
@@ -72,9 +90,11 @@ class RegisterScreenState extends State<RegisterScreen> {
                     }
                   },
                   style: AppStyles.elevatedButtonStyle,
+                  // Utilizando o estilo de botão do app_styles.dart
                   child: const Text(
                     'Criar Conta',
                     style: AppStyles.buttonTextStyle,
+                    // Utilizando o estilo de texto do botão do app_styles.dart
                   ),
                 ),
               ],

@@ -1,4 +1,4 @@
-# ideia_app
+# ideiacode_cadastro
 
 A new Flutter project.
 

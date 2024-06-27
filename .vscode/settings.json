@@ -1,5 +1,3 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive",
     "java.compile.nullAnalysis.mode": "automatic"
->>>>>>> bc7606f7cbb277def82b98024c6c32f4e851e90d
 }

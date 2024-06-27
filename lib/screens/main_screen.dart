@@ -1,34 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideiacode_cadastro/screens/home_screen.dart';
-import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
-import 'package:ideiacode_cadastro/screens/login_screen.dart';
-import 'package:ideiacode_cadastro/screens/register_screen.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'IdeiaCode Cadastro',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const MainScreen(),
-      routes: {
-        '/login': (context) => const LoginScreen(),
-        '/register': (context) => const RegisterScreen(),
-        '/home': (context) => const HomeScreen(),
-        '/listClients': (context) => const ListClientsScreen(clients: []),
-      },
-    );
-  }
-}
+import 'package:ideiacode_cadastro/routing/routes.dart';
+import 'package:ideiacode_cadastro/styles/app_styles.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -37,10 +9,12 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sistema de Cadastro'),
+        title: const Text(
+          'Sistema de Cadastro',
+          style: AppStyles.titleTextStyle,
+        ),
         centerTitle: true,
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 24),
-        backgroundColor: Colors.blue,
+        backgroundColor: AppStyles.primaryColor,
         elevation: 0,
       ),
       body: Center(
@@ -68,17 +42,10 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, Routes.login);
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                fixedSize: const Size(200, 50),
-              ),
+              style: AppStyles.elevatedButtonStyle,
               child: const Text(
                 'Login',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                style: AppStyles.buttonTextStyle,
               ),
             ),
             const SizedBox(height: 20),
@@ -86,17 +53,10 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, Routes.register);
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                fixedSize: const Size(200, 50),
-              ),
+              style: AppStyles.elevatedButtonStyle,
               child: const Text(
                 'Criar Conta',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                style: AppStyles.buttonTextStyle,
               ),
             ),
           ],
