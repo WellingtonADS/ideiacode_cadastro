@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ideiacode_cadastro/routing/routes.dart';
-<<<<<<< HEAD
-import 'package:ideiacode_cadastro/styles/app_styles.dart';
-=======
->>>>>>> bc7606f7cbb277def82b98024c6c32f4e851e90d
+import 'package:ideiacode_cadastro/screens/main_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/register_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/list_clients_screen.dart';
 
 void main() {
   runApp(const Cadastro());
@@ -19,15 +19,14 @@ class Cadastro extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        appBarTheme: AppStyles.appBarTheme,
       ),
-<<<<<<< HEAD
-      //initialRoute: Routes.mainScreen,
-      routes: Routes.getRoutes(),
-=======
-      initialRoute: Routes.home,
-      routes: Routes.getRoutes(), // Utilizando o método getRoutes() da classe Routes
->>>>>>> bc7606f7cbb277def82b98024c6c32f4e851e90d
+      home: const MainScreen(), // Definindo MainScreen como tela inicial
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/listClients': (context) => const ListClientsScreen(clients: []),
+      },
       locale: const Locale('pt', 'BR'),
     );
   }
