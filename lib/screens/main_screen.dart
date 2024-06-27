@@ -1,36 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:ideiacode_cadastro/screens/home_screen.dart';
-//import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
-//import 'package:ideiacode_cadastro/screens/login_screen.dart';
-//import 'package:ideiacode_cadastro/screens/register_screen.dart';
-
-/* /// Função principal que inicia a aplicação.
-void main() {
-  runApp(const MyApp());
-}
-
-/// Classe que representa o aplicativo.
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'IdeiaCode Cadastro',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const MainScreen(),
-      routes: {
-        '/login': (context) => const LoginScreen(),
-        '/register': (context) => const RegisterScreen(),
-        '/home': (context) => const HomeScreen(),
-        '/listClients': (context) => const ListClientsScreen(clients: []),
-      },
-    );
-  }
-}*/
 
 /// Classe que representa a tela principal do aplicativo.
 class MainScreen extends StatelessWidget {
@@ -58,7 +26,7 @@ class MainScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Bem-vindo ao IdeiaCode!',
+              'Bem-vindo a IdeiaCode!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),

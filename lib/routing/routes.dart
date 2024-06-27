@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ideiacode_cadastro/models/cliente.dart';
 import 'package:ideiacode_cadastro/screens/client_profile_screen.dart';
 import 'package:ideiacode_cadastro/screens/login_screen.dart';
+import 'package:ideiacode_cadastro/screens/main_screen.dart';
 import 'package:ideiacode_cadastro/screens/register_screen.dart';
 import 'package:ideiacode_cadastro/screens/home_screen.dart';
 import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
@@ -18,7 +19,7 @@ class Routes {
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
-      home: (context) => const HomeScreen(),
+      home: (context) => const MainScreen(),
       login: (context) => const LoginScreen(),
       register: (context) => const RegisterScreen(),
       homeScreen: (context) => const HomeScreen(),
