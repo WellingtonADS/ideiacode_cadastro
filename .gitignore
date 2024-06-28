@@ -30,6 +30,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/android/
+firebase_options.dart
+firebase.json
 
 # Symbolication related
 app.*.symbols
