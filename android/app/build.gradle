@@ -30,6 +30,7 @@ android {
     namespace = "com.ideiacode.ideiacode_cadastro"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+    
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -41,7 +42,7 @@ android {
         applicationId = "com.ideiacode.ideiacode_cadastro"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = flutter.minSdkVersion
+        minSdkVersion 23 // Definido explicitamente
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName

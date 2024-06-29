@@ -10,7 +10,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-   final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final senha = TextEditingController();
 
@@ -41,28 +41,39 @@ class LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  login() async {
+  Future<void> login() async {
+    if (!mounted) return; // Verifica se o widget ainda está montado
+
     setState(() => loading = true);
     try {
       await context.read<AuthService>().login(email.text, senha.text);
     } on AuthException catch (e) {
-      if (!mounted) return;
-      setState(() => loading = false);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.message)));
+      if (mounted) { // Verifica novamente antes de atualizar o estado
+        setState(() => loading = false);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+      }
+    } finally {
+      if (mounted) {
+        setState(() => loading = false);
+      }
     }
   }
 
-  registrar() async {
-    if (!mounted) return;
+  Future<void> registrar() async {
+    if (!mounted) return; // Verifica se o widget ainda está montado
+
     setState(() => loading = true);
     try {
       await context.read<AuthService>().registrar(email.text, senha.text);
     } on AuthException catch (e) {
-      if (!mounted) return;
-      setState(() => loading = false);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.message)));
+      if (mounted) { // Verifica novamente antes de atualizar o estado
+        setState(() => loading = false);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
+      }
+    } finally {
+      if (mounted) {
+        setState(() => loading = false);
+      }
     }
   }
 
@@ -103,8 +114,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
                   child: TextFormField(
                     controller: senha,
                     obscureText: true,

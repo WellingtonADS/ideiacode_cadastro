@@ -5,6 +5,7 @@ import 'package:ideiacode_cadastro/Styles/app_styles.dart';
 import 'package:ideiacode_cadastro/routing/routes.dart';
 
 
+
 void main() async {
   
   WidgetsFlutterBinding.ensureInitialized();
