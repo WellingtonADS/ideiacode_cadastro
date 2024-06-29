@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ideiacode_cadastro/routing/routes.dart';
-import 'package:ideiacode_cadastro/styles/app_styles.dart';
+import 'package:ideiacode_cadastro/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,90 +10,161 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  String? _emailErrorText;
-  String? _passwordErrorText;
+   final formKey = GlobalKey<FormState>();
+  final email = TextEditingController();
+  final senha = TextEditingController();
 
-  void _validateEmail(String value) {
+  bool isLogin = true;
+  late String titulo;
+  late String actionButton;
+  late String toggleButton;
+  bool loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    setFormAction(true);
+  }
+
+  setFormAction(bool acao) {
     setState(() {
-      if (value.isEmpty) {
-        _emailErrorText = 'Por favor, insira um e-mail';
-      } else if (!value.contains('@')) {
-        _emailErrorText = 'Formato de e-mail inválido';
+      isLogin = acao;
+      if (isLogin) {
+        titulo = 'Bem vindo';
+        actionButton = 'Login';
+        toggleButton = 'Ainda não tem conta? Cadastre-se agora.';
       } else {
-        _emailErrorText = null;
+        titulo = 'Crie sua conta';
+        actionButton = 'Cadastrar';
+        toggleButton = 'Voltar ao Login.';
       }
     });
   }
 
-  void _validatePassword(String value) {
-    setState(() {
-      if (value.isEmpty) {
-        _passwordErrorText = 'Por favor, insira uma senha';
-      } else {
-        _passwordErrorText = null;
-      }
-    });
+  login() async {
+    setState(() => loading = true);
+    try {
+      await context.read<AuthService>().login(email.text, senha.text);
+    } on AuthException catch (e) {
+      if (!mounted) return;
+      setState(() => loading = false);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
+  registrar() async {
+    if (!mounted) return;
+    setState(() => loading = true);
+    try {
+      await context.read<AuthService>().registrar(email.text, senha.text);
+    } on AuthException catch (e) {
+      if (!mounted) return;
+      setState(() => loading = false);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'), 
-      ),
-      body: Center(
-        child: Container(
-          width: 600,
-          padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 100),
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'E-mail',
-                    labelStyle: AppStyles.subtitleTextStyle,
-                    errorText: _emailErrorText,
+                Text(
+                  titulo,
+                  style: const TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: -1.5,
                   ),
-                  onChanged: _validateEmail,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, insira um e-mail';
-                    }
-                    return null;
-                  },
                 ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  key: const Key('passwordField'),
-                  decoration: InputDecoration(
-                    labelText: 'Senha',
-                    labelStyle: AppStyles.subtitleTextStyle,
-                    errorText: _passwordErrorText,
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: TextFormField(
+                    controller: email,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Email',
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Informe o email corretamente!';
+                      }
+                      return null;
+                    },
                   ),
-                  obscureText: true,
-                  onChanged: _validatePassword,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, insira uma senha';
-                    }
-                    return null;
-                  },
                 ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.pushReplacementNamed(context, Routes.homeScreen);
-                    }
-                  },
-                  style: AppStyles.elevatedButtonStyle, // Utilizando o estilo de botão do app_styles.dart
-                  child: const Text(
-                    'Login',
-                    style: AppStyles.buttonTextStyle, // Utilizando o estilo de texto do botão do app_styles.dart
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                  child: TextFormField(
+                    controller: senha,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Senha',
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Informa sua senha!';
+                      } else if (value.length < 6) {
+                        return 'Sua senha deve ter no mínimo 6 caracteres';
+                      }
+                      return null;
+                    },
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        if (isLogin) {
+                          login();
+                        } else {
+                          registrar();
+                        }
+                      }
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: (loading)
+                          ? [
+                              const Padding(
+                                padding: EdgeInsets.all(16),
+                                child: SizedBox(
+                                  width: 24,
+                                  height: 24,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              )
+                            ]
+                          : [
+                              const Icon(Icons.check),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(
+                                  actionButton,
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              ),
+                            ],
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => setFormAction(!isLogin),
+                  child: Text(toggleButton),
                 ),
               ],
             ),

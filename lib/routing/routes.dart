@@ -15,7 +15,7 @@ class Routes {
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
-      login: (context) => const LoginScreen(),
+      login: (context) => const LoginScreen(), // Removido o const
       homeScreen: (context) => const HomeScreen(),
       listClients: (context) => const ListClientsScreen(clients: []),
       addClient: (context) => AddClientScreen(
@@ -23,8 +23,21 @@ class Routes {
           // Implementação da lógica para adicionar cliente aqui
         },
       ),
-      // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
-      clientProfile: (context) => ClientProfileScreen(cliente: Cliente(nome: '', cpf: '', dataNascimento: DateTime.now(), whatsapp: '', id: 0), onDelete: (Cliente ) {  }, onUpdate: (Cliente ) {  },),
+      clientProfile: (context) => ClientProfileScreen(
+        cliente: Cliente(
+          nome: '',
+          cpf: '',
+          dataNascimento: DateTime.now(),
+          whatsapp: '',
+          id: 0,
+        ),
+        onDelete: (Cliente cliente) {
+          // Implementação da lógica para deletar cliente aqui
+        },
+        onUpdate: (Cliente cliente) {
+          // Implementação da lógica para atualizar cliente aqui
+        },
+      ),
     };
   }
 }
