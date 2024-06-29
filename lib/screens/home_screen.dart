@@ -61,6 +61,18 @@ class HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+                          Image.asset(
+              'assets/images/LOGO_IDEIACODE.png',
+              width: 300,
+              height: 150,
+              fit: BoxFit.contain,
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Bem-vindo a IdeiaCode!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: _navigateToAddClient, // Navega para a tela de adicionar cliente
                 style: AppStyles.elevatedButtonStyle, // Aplica o estilo de botão definido em AppStyles
