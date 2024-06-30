@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:ideiacode_cadastro/services/auth_service.dart';
+import 'package:ideiacode_cadastro/styles/app_styles.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -43,13 +43,13 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> login() async {
-    if (!mounted) return; // Verifica se o widget ainda está montado
+    if (!mounted) return;
 
     setState(() => loading = true);
     try {
       await context.read<AuthService>().login(email.text, senha.text);
     } on AuthException catch (e) {
-      if (mounted) { // Verifica novamente antes de atualizar o estado
+      if (mounted) {
         setState(() => loading = false);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
       }
@@ -66,13 +66,13 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> registrar() async {
-    if (!mounted) return; // Verifica se o widget ainda está montado
+    if (!mounted) return;
 
     setState(() => loading = true);
     try {
       await context.read<AuthService>().registrar(email.text, senha.text);
     } on AuthException catch (e) {
-      if (mounted) { // Verifica novamente antes de atualizar o estado
+      if (mounted) {
         setState(() => loading = false);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message)));
       }
@@ -91,9 +91,16 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login'), // Título da AppBar
+        backgroundColor: AppStyles.primaryColor, // Cor de fundo da AppBar
+        centerTitle: true, // Centraliza o título da AppBar
+        titleTextStyle: AppStyles.appBarTheme.titleTextStyle, // Estilo do texto do título da AppBar
+        iconTheme: AppStyles.appBarTheme.iconTheme, // Estilo do ícone da AppBar
+      ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.only(top: 100, left: 24, right: 24),
           child: Form(
             key: formKey,
             child: Column(
@@ -101,14 +108,10 @@ class LoginScreenState extends State<LoginScreen> {
               children: [
                 Text(
                   titulo,
-                  style: const TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: -1.5,
-                  ),
+                  style: AppStyles.titleTextStyle.copyWith(fontSize: 35, letterSpacing: -1.5),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: TextFormField(
                     controller: email,
                     decoration: const InputDecoration(
@@ -125,7 +128,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                  padding: const EdgeInsets.only(bottom: 24.0),
                   child: TextFormField(
                     controller: senha,
                     obscureText: true,
@@ -143,44 +146,50 @@ class LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        if (isLogin) {
-                          login();
-                        } else {
-                          registrar();
-                        }
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 50), // Definindo o tamanho mínimo do botão
+                    textStyle: AppStyles.buttonTextStyle, // Estilo de texto definido em AppStyles
+                    padding: const EdgeInsets.all(16), // Espaçamento interno do botão
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8), // Borda arredondada do botão
+                    ),
+                    backgroundColor: AppStyles.primaryColor, // Cor de fundo do botão
+                  ),
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      if (isLogin) {
+                        login();
+                      } else {
+                        registrar();
                       }
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: (loading)
-                          ? [
-                              const Padding(
-                                padding: EdgeInsets.all(16),
-                                child: SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              )
-                            ]
-                          : [
-                              const Icon(Icons.check),
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
-                                  actionButton,
-                                  style: const TextStyle(fontSize: 20),
+                    }
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: (loading)
+                        ? [
+                            const Padding(
+                              padding: EdgeInsets.all(16),
+                              child: SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
                                 ),
                               ),
-                            ],
-                    ),
+                            )
+                          ]
+                        : [
+                            const Icon(Icons.check),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Text(
+                                actionButton,
+                                style: AppStyles.buttonTextStyle.copyWith(fontSize: 20),
+                              ),
+                            ),
+                          ],
                   ),
                 ),
                 TextButton(

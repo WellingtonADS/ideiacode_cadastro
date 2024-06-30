@@ -27,7 +27,7 @@ void main() async {
 /// para os widgets filhos. Além disso, define o tema do aplicativo e define a
 /// tela inicial como [AuthCheck].
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
