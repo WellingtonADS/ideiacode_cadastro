@@ -6,6 +6,12 @@ import 'package:ideiacode_cadastro/Styles/app_styles.dart';
 import 'package:provider/provider.dart';
 import 'package:ideiacode_cadastro/services/auth_service.dart';
 
+/// Função principal que inicializa o aplicativo Flutter.
+/// 
+/// Essa função é chamada automaticamente quando o aplicativo é iniciado.
+/// Ela garante que o Flutter esteja inicializado corretamente e, em seguida,
+/// inicializa o Firebase usando as opções padrão definidas em [DefaultFirebaseOptions.currentPlatform].
+/// Em seguida, ela inicia o aplicativo chamando a classe [MyApp].
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -14,26 +20,28 @@ void main() async {
   runApp(const MyApp());
 }
 
+/// Classe principal do aplicativo Flutter.
+/// 
+/// Essa classe é um widget stateless que cria a estrutura básica do aplicativo.
+/// Ela utiliza o widget [MultiProvider] para fornecer a instância do [AuthService]
+/// para os widgets filhos. Além disso, define o tema do aplicativo e define a
+/// tela inicial como [AuthCheck].
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        //ChangeNotifierProvider.value(
-          //value: AuthService(), // Use ChangeNotifierProvider.value instead of ChangeNotifierProvider
+      providers: [ 
         ChangeNotifierProvider(create: (_) => AuthService()),  
       ],
       child: MaterialApp(
         title: 'IdeiaCode Cadastro',
         theme: ThemeData(
           primaryColor: AppStyles.primaryColor,
-          appBarTheme: AppStyles.appBarTheme, // Aplicando o tema da AppBar globalmente
+          appBarTheme: AppStyles.appBarTheme,
         ),
-        
-        
-        home: const AuthCheck(),//novo contexto
+        home: const AuthCheck(),
       ),
     );
   }

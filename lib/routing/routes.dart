@@ -1,3 +1,18 @@
+/// Este arquivo contém a definição de todas as rotas usadas na aplicação.
+/// Cada rota está associada a uma tela/widget específico.
+/// A classe [Routes] fornece um método estático [getRoutes] que retorna um mapa de rotas e seus construtores de widgets correspondentes.
+/// As rotas incluem:
+/// - [authCheck]: A rota inicial que verifica o status de autenticação do usuário.
+/// - [login]: A rota para a tela de login.
+/// - [homeScreen]: A rota para a tela inicial.
+/// - [listClients]: A rota para a tela de listagem de clientes.
+/// - [addClient]: A rota para a tela de adicionar cliente.
+/// - [clientProfile]: A rota para a tela de perfil do cliente.
+/// Cada rota está associada a uma função construtora de widget que retorna a tela/widget correspondente.
+/// As funções construtoras de widget são definidas como funções anônimas que recebem um [BuildContext] como parâmetro e retornam a tela/widget correspondente.
+/// As telas/widgets [AuthCheck], [LoginScreen], [HomeScreen], [ListClientsScreen], [AddClientScreen] e [ClientProfileScreen] estão associadas às rotas.
+/// As telas [AddClientScreen] e [ClientProfileScreen] possuem parâmetros adicionais para lidar com dados do cliente e realizar ações como adicionar, excluir e atualizar clientes.
+library;
 import 'package:flutter/material.dart';
 import 'package:ideiacode_cadastro/screens/add_client_screen.dart';
 import 'package:ideiacode_cadastro/screens/client_profile_screen.dart';
@@ -15,6 +30,11 @@ class Routes {
   static const String addClient = '/addClient';
   static const String clientProfile = '/clientProfile';
 
+  /// Retorna um mapa de rotas e seus construtores de widgets correspondentes.
+  /// Cada rota está associada a uma função construtora de widget que retorna a tela/widget correspondente.
+  /// As funções construtoras de widget são definidas como funções anônimas que recebem um [BuildContext] como parâmetro e retornam a tela/widget correspondente.
+  /// As telas/widgets [AuthCheck], [LoginScreen], [HomeScreen], [ListClientsScreen], [AddClientScreen] e [ClientProfileScreen] estão associadas às rotas.
+  /// As telas [AddClientScreen] e [ClientProfileScreen] possuem parâmetros adicionais para lidar com dados do cliente e realizar ações como adicionar, excluir e atualizar clientes.
   static Map<String, WidgetBuilder> getRoutes() {
     return {
       authCheck: (context) => const AuthCheck(), // Definindo AuthCheck como rota inicial

@@ -4,6 +4,7 @@ import 'package:ideiacode_cadastro/screens/login_screen.dart';
 import 'package:ideiacode_cadastro/services/auth_service.dart';
 import 'package:provider/provider.dart';
 
+/// Classe responsável por verificar a autenticação do usuário e redirecionar para a tela adequada.
 class AuthCheck extends StatefulWidget {
   const AuthCheck({super.key});
 
@@ -25,6 +26,7 @@ class AuthCheckState extends State<AuthCheck> {
     }
   }
 
+  /// Exibe um indicador de carregamento enquanto a autenticação está sendo verificada.
   Widget loading() {
     return const Scaffold(
       body: Center(

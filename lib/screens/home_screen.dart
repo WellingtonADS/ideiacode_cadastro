@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ideiacode_cadastro/models/cliente.dart';
 import 'package:ideiacode_cadastro/screens/add_client_screen.dart';
 import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
-import 'package:ideiacode_cadastro/routing/routes.dart';
 import 'package:ideiacode_cadastro/services/auth_service.dart';
 import 'package:ideiacode_cadastro/styles/app_styles.dart';
 import 'package:provider/provider.dart';
