@@ -5,8 +5,10 @@ import 'package:ideiacode_cadastro/screens/home_screen.dart';
 import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
 import 'package:ideiacode_cadastro/screens/login_screen.dart';
 import 'package:ideiacode_cadastro/models/cliente.dart';
+import 'package:ideiacode_cadastro/services/auth_check.dart';
 
 class Routes {
+  static const String authCheck = '/'; // Rota inicial
   static const String login = '/login';
   static const String homeScreen = '/home';
   static const String listClients = '/listClients';
@@ -15,7 +17,8 @@ class Routes {
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
-      login: (context) => const LoginScreen(), // Removido o const
+      authCheck: (context) => const AuthCheck(), // Definindo AuthCheck como rota inicial
+      login: (context) => const LoginScreen(),
       homeScreen: (context) => const HomeScreen(),
       listClients: (context) => const ListClientsScreen(clients: []),
       addClient: (context) => AddClientScreen(

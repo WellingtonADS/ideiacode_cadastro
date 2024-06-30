@@ -3,7 +3,9 @@ import 'package:ideiacode_cadastro/models/cliente.dart';
 import 'package:ideiacode_cadastro/screens/add_client_screen.dart';
 import 'package:ideiacode_cadastro/screens/list_clients_screen.dart';
 import 'package:ideiacode_cadastro/routing/routes.dart';
+import 'package:ideiacode_cadastro/services/auth_service.dart';
 import 'package:ideiacode_cadastro/styles/app_styles.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,7 +24,9 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   void _logout() {
-    Navigator.pushReplacementNamed(context, Routes.login); // Navega para a tela de login
+    //Navigator.pushReplacementNamed(context, Routes.login); // Navega para a tela de login
+    AuthService authService = Provider.of<AuthService>(context, listen: false);
+    authService.logout(); // Chama o método logout do AuthService
   }
 
   void _navigateToAddClient() {

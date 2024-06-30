@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ideiacode_cadastro/services/auth_check.dart';
 import 'firebase_options.dart';
 import 'package:ideiacode_cadastro/Styles/app_styles.dart';
-import 'package:ideiacode_cadastro/routing/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:ideiacode_cadastro/services/auth_service.dart';
 
@@ -11,19 +11,19 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const Cadastro());
+  runApp(const MyApp());
 }
 
-class Cadastro extends StatelessWidget {
-  const Cadastro({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: AuthService(), // Use ChangeNotifierProvider.value instead of ChangeNotifierProvider
-        ),
+        //ChangeNotifierProvider.value(
+          //value: AuthService(), // Use ChangeNotifierProvider.value instead of ChangeNotifierProvider
+        ChangeNotifierProvider(create: (_) => AuthService()),  
       ],
       child: MaterialApp(
         title: 'IdeiaCode Cadastro',
@@ -31,8 +31,9 @@ class Cadastro extends StatelessWidget {
           primaryColor: AppStyles.primaryColor,
           appBarTheme: AppStyles.appBarTheme, // Aplicando o tema da AppBar globalmente
         ),
-        initialRoute: Routes.login,
-        routes: Routes.getRoutes(),
+        
+        
+        home: const AuthCheck(),//novo contexto
       ),
     );
   }
